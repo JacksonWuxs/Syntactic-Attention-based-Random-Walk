@@ -8,6 +8,54 @@ Arora et al (2016) proposed a strong baseline of sentence embeddings using a ran
 
 #### 下载 Download
 
+* Step 1
+
+  从pypi上下载最新版的SARW代码或者git clone本项目中的源代码。
+
+  Download from Pypi or you can git clone the source code from this repository.
+
+```bash
+pip install SARW
+```
+
+
+
+* Step 2 / 1
+
+  发送邮件wuxsmail@163.com获取最新的预训练模型
+
+  Send a email to wuxsmail@163.com for the latest pre-trained model
+
+
+
+* Step 2 / 2 
+
+  或者给定一些语料、词向量和统计好的词频训练您自己的模型
+
+  OR, train your model by given corpus, word embeddings and word frequency file
+
+```python
+>>> from SARW import trainSARW
+>>> trainSARW(corpus, w2v_path, save_path, freq_path)
+```
+
+
+
+* Step 3
+
+  加载模型并在您的工作中使用它
+
+  load model and let it help you in your program
+
+```python
+>>> from SARW import loadSARW
+>>> sarw_model = loadSARW(w2v_path, save_path, tokenizer=None)
+>>> sarw_model.transform([
+    	['This', 'is', 'the', 'first', 'sentence', '.'],
+    	['This', 'is', 'another', 'once', '.']
+    ])
+```
+
 
 
 #### 实验结果 Result
@@ -20,7 +68,15 @@ Arora et al (2016) proposed a strong baseline of sentence embeddings using a ran
 | SCBOW-ATT-SUR  | 57.3  | 56.8  | 65.1  | 66.3  | -      |
 | SCBOW-ATT-SPOS | 57.8  | 56.5  | 66.5  | 66.0  | -      |
 | SCBOW-ATT-CCG  | 59.2  | 56.2  | 66.6  | 67.2  | -      |
-| SARW           |       |       |       |       |        |
+| SARW           | 62.2  | 67.6  | 71.9  | 73.7  | 73.1   |
+
+#### Contributors
+
+* Xuansheng Wu
+
+* Zhiyi Zhao
+
+* Liangliang Liu
 
 #### Reference
 

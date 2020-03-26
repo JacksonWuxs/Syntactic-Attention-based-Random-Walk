@@ -12,7 +12,7 @@ from .glove import load_Glove
 from .parser import load_spacy_parser, clean_text
 from .calculator import calItemsEmbedding, calPosEmbedding
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 __author__ = 'Xuansheng Wu (wuxsmail@163.com)'
 
 
@@ -184,16 +184,16 @@ class SARW(object):
         return vectors
 
 
-def trainSARW(corpus, glove_path, path_save='output/sarw.pkl', path_freq='SARW/data/enwiki_vocab_min200.txt'):
-    GLOVE = load_Glove(glove_path, path_freq)
+def trainSARW(corpus, w2v_path, save_path='output/sarw.pkl', freq_path='SARW/data/enwiki_vocab_min200.txt'):
+    GLOVE = load_Glove(w2v_path, path_freq)
     sarw = SARW(word2vec=GLOVE)
     sarw.fit(corpus)
-    sarw.load_freq(path_freq)
-    with open(path_save, 'wb') as output:
+    sarw.load_freq(freq_path)
+    with open(save_path, 'wb') as output:
         dump(sarw, output)
     return sarw
 
-def loadSARW(glove_path, path='output/sarw.pkl', tokenizer=None):
+def loadSARW(w2v_path, save_path='output/sarw.pkl', tokenizer=None):
     with open(path, 'rb') as model:
         sarw = load(model)
     sarw.load_word2vec(glove_path)
