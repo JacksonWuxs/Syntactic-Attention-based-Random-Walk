@@ -12,6 +12,9 @@ from .glove import load_Glove
 from .parser import load_spacy_parser, clean_text
 from .calculator import calItemsEmbedding, calPosEmbedding
 
+__version__ = '0.1.0'
+__author__ = 'Xuansheng Wu (wuxsmail@163.com)'
+
 
 class SARW(object):
     
