@@ -12,7 +12,7 @@ from .glove import load_Glove
 from .parser import load_spacy_parser, clean_text
 from .calculator import calItemsEmbedding, calPosEmbedding
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 __author__ = 'Xuansheng Wu (wuxsmail@163.com)'
 
 
@@ -59,7 +59,8 @@ class SARW(object):
     def set_tokenizer(self, name_of_tokenizer='en_core_web_md'):
         if name_of_tokenizer is None:
             self._tokenize = lambda text: print("the model does't contain tokenizers, please input tokenized sentence")
-             
+            return
+        
         if name_of_tokenizer == 'nltk':
             from nltk.tokenize import word_tokenize
             self._tokenize = lambda text: word_tokenize(clean_text(text))
@@ -194,9 +195,9 @@ def trainSARW(corpus, w2v_path, save_path='output/sarw.pkl', freq_path='SARW/dat
     return sarw
 
 def loadSARW(w2v_path, save_path='output/sarw.pkl', tokenizer=None):
-    with open(path, 'rb') as model:
+    with open(save_path, 'rb') as model:
         sarw = load(model)
-    sarw.load_word2vec(glove_path)
+    sarw.load_word2vec(w2v_path)
     if tokenizer is not None:
         sarw.set_tokenizer(tokenizer)
     return sarw

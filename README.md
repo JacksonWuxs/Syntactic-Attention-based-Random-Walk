@@ -48,7 +48,7 @@ pip install SARW
   load model and let it help you in your program
 
 ```python
->>> from SARW import loadSARW
+>>> from SARW import loadSARW, SARW
 >>> sarw_model = loadSARW(w2v_path, save_path, tokenizer=None)
 >>> sarw_model.transform([
     	['This', 'is', 'the', 'first', 'sentence', '.'],
